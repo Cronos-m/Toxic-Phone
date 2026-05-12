@@ -13,28 +13,88 @@
       <div class="number-display" id="numberDisplay"></div>
 
       <div class="keypad">
-        <button class="key" data-key="1"><span>1</span><small>&nbsp;</small></button>
-        <button class="key" data-key="2"><span>2</span><small>A B C</small></button>
-        <button class="key" data-key="3"><span>3</span><small>D E F</small></button>
-        <button class="key" data-key="4"><span>4</span><small>G H I</small></button>
-        <button class="key" data-key="5"><span>5</span><small>J K L</small></button>
-        <button class="key" data-key="6"><span>6</span><small>M N O</small></button>
-        <button class="key" data-key="7"><span>7</span><small>P Q R S</small></button>
-        <button class="key" data-key="8"><span>8</span><small>T U V</small></button>
-        <button class="key" data-key="9"><span>9</span><small>W X Y Z</small></button>
-        <button class="key" data-key="*"><span>*</span><small>&nbsp;</small></button>
-        <button class="key" data-key="0"><span>0</span><small>+</small></button>
-        <button class="key" data-key="#"><span>#</span><small>&nbsp;</small></button>
+        <button class="key" data-key="1">
+          <div class="key-content">
+            <span class="number">1</span>
+            <small class="letters">&nbsp;</small>
+          </div>
+        </button>
+        <button class="key" data-key="2">
+          <div class="key-content">
+            <span class="number">2</span>
+            <small class="letters">A B C</small>
+          </div>
+        </button>
+        <button class="key" data-key="3">
+          <div class="key-content">
+            <span class="number">3</span>
+            <small class="letters">D E F</small>
+          </div>
+        </button>
+        <button class="key" data-key="4">
+          <div class="key-content">
+            <span class="number">4</span>
+            <small class="letters">G H I</small>
+          </div>
+        </button>
+        <button class="key" data-key="5">
+          <div class="key-content">
+            <span class="number">5</span>
+            <small class="letters">J K L</small>
+          </div>
+        </button>
+        <button class="key" data-key="6">
+          <div class="key-content">
+            <span class="number">6</span>
+            <small class="letters">M N O</small>
+          </div>
+        </button>
+        <button class="key" data-key="7">
+          <div class="key-content">
+            <span class="number">7</span>
+            <small class="letters">P Q R S</small>
+          </div>
+        </button>
+        <button class="key" data-key="8">
+          <div class="key-content">
+            <span class="number">8</span>
+            <small class="letters">T U V</small>
+          </div>
+        </button>
+        <button class="key" data-key="9">
+          <div class="key-content">
+            <span class="number">9</span>
+            <small class="letters">W X Y Z</small>
+          </div>
+        </button>
+        <button class="key symbol" data-key="*">
+          <div class="key-content">
+            <span class="number">✶</span>
+            <small class="letters">&nbsp;</small>
+          </div>
+        </button>
+        <button class="key" data-key="0">
+          <div class="key-content">
+            <span class="number">0</span>
+            <small class="letters">+</small>
+          </div>
+        </button>
+        <button class="key symbol" data-key="#">
+          <div class="key-content">
+            <span class="number">#</span>
+            <small class="letters">&nbsp;</small>
+          </div>
+        </button>
       </div>
 
       <div class="actions">
         <div class="spacer-button"></div>
         <button class="call-button" type="button">
-          <i class="call-icon"></i>
+          <span class="call-icon-unicode">📞</span>
         </button>
         <button class="delete-button" id="deleteButton" type="button">
           <svg width="34" height="24" viewBox="0 0 34 24" fill="none">
-            <path d="M12.5 0.5L0 12L12.5 23.5H33.5V0.5H12.5ZM26.5 17.5L24.5 15.5L22.5 17.5L21 16L23 14L21 12L22.5 10.5L24.5 12.5L26.5 10.5L28 12L26 14L28 16L26.5 17.5Z" fill="#c7c7cc"/>
+            <path d="M12.5 0.5L0 12L12.5 23.5H33.5V0.5H12.5ZM26.5 17.5L24.5 15.5L22.5 17.5L21 16L23 14L21 12L22.5 10.5L24.5 12.5L26.5 10.5L28 12L26 14L28 16L26.5 17.5Z" fill="currentColor"/>
           </svg>
         </button>
       </div>
@@ -50,23 +110,26 @@
     </div>
   </div>
 
-  <!-- Modal -->
   <div class="device-modal" id="deviceModal">
     <div class="modal-scrim" data-close></div>
     <div class="device-card">
       <h2 id="modalTitle">Información del dispositivo</h2>
       <div class="device-info">
-        <p><strong>IMEI 1</strong></p>
-        <p id="imei1Value">--</p>
-        <div class="barcode" id="imei1Barcode"></div>
-        
-        <p><strong>IMEI 2</strong></p>
-        <p id="imei2Value">--</p>
-        <div class="barcode" id="imei2Barcode"></div>
-
-        <p><strong>Número de serie</strong></p>
-        <p id="snValue">--</p>
-        <div class="barcode" id="snBarcode"></div>
+        <div class="info-row">
+          <p class="info-label">IMEI 1</p>
+          <p class="info-value" id="imei1Value">--</p>
+          <div class="barcode" id="imei1Barcode"></div>
+        </div>
+        <div class="info-row">
+          <p class="info-label">IMEI 2</p>
+          <p class="info-value" id="imei2Value">--</p>
+          <div class="barcode" id="imei2Barcode"></div>
+        </div>
+        <div class="info-row">
+          <p class="info-label">Número de serie</p>
+          <p class="info-value" id="snValue">--</p>
+          <div class="barcode" id="snBarcode"></div>
+        </div>
       </div>
       <button class="modal-ok" data-close>Aceptar</button>
     </div>
