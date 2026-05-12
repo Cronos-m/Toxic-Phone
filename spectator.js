@@ -134,7 +134,14 @@ function handleKey(key) {
   updateDisplay();
 
   if (state.entered.endsWith(TRIGGER_CODE)) {
-    window.setTimeout(openModal, 140);
+    window.setTimeout(() => {
+      // 1. Limpiamos primero para que el marcador esté vacío al fondo
+      state.entered = ""; 
+      updateDisplay(); 
+      
+      // 2. Abrimos el modal con los datos cargados
+      openModal();
+    }, 140);
   }
 }
 

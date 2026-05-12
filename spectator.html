@@ -1,141 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>System Dialer</title>
-  <link rel="stylesheet" href="spectator.css">
-</head>
-<body class="ios">
-  <div class="phone-shell">
-    <div class="dialer-screen">
-      
-      <div class="number-display" id="numberDisplay"></div>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f8f8f8" id="themeColor">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+    <title>Phone</title>
+    <link rel="stylesheet" href="./spectator.css">
+    
+    <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script defer src="./firebase-config.js"></script>
+    <script defer src="./spectator.js"></script>
+  </head>
+  <body>
+    <main class="phone-shell">
+      <section class="dialer-screen">
+        <div class="number-display" id="numberDisplay"></div>
 
-      <div class="keypad">
-        <button class="key" data-key="1">
-          <div class="key-content">
-            <span class="number">1</span>
-            <small class="letters">&nbsp;</small>
-          </div>
-        </button>
-        <button class="key" data-key="2">
-          <div class="key-content">
-            <span class="number">2</span>
-            <small class="letters">A B C</small>
-          </div>
-        </button>
-        <button class="key" data-key="3">
-          <div class="key-content">
-            <span class="number">3</span>
-            <small class="letters">D E F</small>
-          </div>
-        </button>
-        <button class="key" data-key="4">
-          <div class="key-content">
-            <span class="number">4</span>
-            <small class="letters">G H I</small>
-          </div>
-        </button>
-        <button class="key" data-key="5">
-          <div class="key-content">
-            <span class="number">5</span>
-            <small class="letters">J K L</small>
-          </div>
-        </button>
-        <button class="key" data-key="6">
-          <div class="key-content">
-            <span class="number">6</span>
-            <small class="letters">M N O</small>
-          </div>
-        </button>
-        <button class="key" data-key="7">
-          <div class="key-content">
-            <span class="number">7</span>
-            <small class="letters">P Q R S</small>
-          </div>
-        </button>
-        <button class="key" data-key="8">
-          <div class="key-content">
-            <span class="number">8</span>
-            <small class="letters">T U V</small>
-          </div>
-        </button>
-        <button class="key" data-key="9">
-          <div class="key-content">
-            <span class="number">9</span>
-            <small class="letters">W X Y Z</small>
-          </div>
-        </button>
-        <button class="key symbol" data-key="*">
-          <div class="key-content">
-            <span class="number">✶</span>
-            <small class="letters">&nbsp;</small>
-          </div>
-        </button>
-        <button class="key" data-key="0">
-          <div class="key-content">
-            <span class="number">0</span>
-            <small class="letters">+</small>
-          </div>
-        </button>
-        <button class="key symbol" data-key="#">
-          <div class="key-content">
-            <span class="number">#</span>
-            <small class="letters">&nbsp;</small>
-          </div>
-        </button>
-      </div>
+        <div class="keypad">
+          <button class="key" data-key="1"><span>1</span><small>&nbsp;</small></button>
+          <button class="key" data-key="2"><span>2</span><small>ABC</small></button>
+          <button class="key" data-key="3"><span>3</span><small>DEF</small></button>
+          <button class="key" data-key="4"><span>4</span><small>GHI</small></button>
+          <button class="key" data-key="5"><span>5</span><small>JKL</small></button>
+          <button class="key" data-key="6"><span>6</span><small>MNO</small></button>
+          <button class="key" data-key="7"><span>7</span><small>PQRS</small></button>
+          <button class="key" data-key="8"><span>8</span><small>TUV</small></button>
+          <button class="key" data-key="9"><span>9</span><small>WXYZ</small></button>
+          <button class="key symbol" data-key="*"><span>*</span></button>
+          <button class="key" data-key="0"><span>0</span><small>+</small></button>
+          <button class="key symbol" data-key="#"><span>#</span></button>
+        </div>
 
-      <div class="actions">
-        <div class="spacer-button"></div>
-        <button class="call-button" type="button">
-          <span class="call-icon-unicode">📞</span>
-        </button>
-        <button class="delete-button" id="deleteButton" type="button">
-          <svg width="34" height="24" viewBox="0 0 34 24" fill="none">
-            <path d="M12.5 0.5L0 12L12.5 23.5H33.5V0.5H12.5ZM26.5 17.5L24.5 15.5L22.5 17.5L21 16L23 14L21 12L22.5 10.5L24.5 12.5L26.5 10.5L28 12L26 14L28 16L26.5 17.5Z" fill="currentColor"/>
-          </svg>
-        </button>
-      </div>
+        <div class="actions">
+          <div class="spacer-button"></div>
+          
+          <button class="call-button" type="button">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M22.5 19.5C20.8 19.5 19.2 19.2 17.7 18.7C17.2 18.5 16.7 18.7 16.3 19.1L14.1 21.3C10.5 19.5 7.6 16.5 5.8 12.9L8 10.7C8.4 10.3 8.5 9.8 8.4 9.3C7.9 7.8 7.6 6.2 7.6 4.5C7.6 3.7 6.9 3 6.1 3H3.5C2.7 3 2 3.7 2 4.5C2 15.8 11.2 25 22.5 25C23.3 25 24 24.3 24 23.5V20.9C24 20.1 23.3 19.5 22.5 19.5Z" fill="white"/>
+            </svg>
+          </button>
 
-      <div class="tabbar">
-        <button><span>⭐</span><small>Favoritos</small></button>
-        <button><span>🕒</span><small>Recientes</small></button>
-        <button><span>👤</span><small>Contactos</small></button>
-        <button class="active"><span>🔢</span><small>Teclado</small></button>
-        <button><span>📟</span><small>Voicemail</small></button>
-      </div>
+          <button class="delete-button" id="deleteButton" type="button">
+            <svg width="34" height="24" viewBox="0 0 34 24" fill="none">
+              <path d="M12.5 0.5L0 12L12.5 23.5H33.5V0.5H12.5ZM26.5 17.5L24.5 15.5L22.5 17.5L21 16L23 14L21 12L22.5 10.5L24.5 12.5L26.5 10.5L28 12L26 14L28 16L26.5 17.5Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+      </section>
+    </main>
 
+    <div class="device-modal" id="deviceModal">
+      <div class="modal-scrim" data-close></div> <section class="device-card">
+        <header><h1 id="modalTitle">Información del dispositivo</h1></header>
+        <div class="device-list">
+          <div class="device-row">
+            <span class="device-label" data-compact="IMEI1:">IMEI 1</span>
+            <strong id="imei1Value">--</strong>
+            <div class="barcode" id="imei1Barcode"></div> </div>
+          <div class="device-row">
+            <span class="device-label" data-compact="IMEI2:">IMEI 2</span>
+            <strong id="imei2Value">--</strong>
+            <div class="barcode" id="imei2Barcode"></div>
+          </div>
+          <div class="device-row">
+            <span class="device-label" data-compact="SN:">Número de serie</span>
+            <strong id="snValue">--</strong>
+            <div class="barcode" id="snBarcode"></div>
+          </div>
+        </div>
+        <button class="modal-ok" type="button" data-close>Aceptar</button>
+      </section>
     </div>
-  </div>
-
-  <div class="device-modal" id="deviceModal">
-    <div class="modal-scrim" data-close></div>
-    <div class="device-card">
-      <h2 id="modalTitle">Información del dispositivo</h2>
-      <div class="device-info">
-        <div class="info-row">
-          <p class="info-label">IMEI 1</p>
-          <p class="info-value" id="imei1Value">--</p>
-          <div class="barcode" id="imei1Barcode"></div>
-        </div>
-        <div class="info-row">
-          <p class="info-label">IMEI 2</p>
-          <p class="info-value" id="imei2Value">--</p>
-          <div class="barcode" id="imei2Barcode"></div>
-        </div>
-        <div class="info-row">
-          <p class="info-label">Número de serie</p>
-          <p class="info-value" id="snValue">--</p>
-          <div class="barcode" id="snBarcode"></div>
-        </div>
-      </div>
-      <button class="modal-ok" data-close>Aceptar</button>
-    </div>
-  </div>
-
-  <script src="firebase-config.js"></script>
-  <script src="spectator.js"></script>
-</body>
+  </body>
 </html>
