@@ -617,7 +617,7 @@ body.android .actions {
   display: flex; /* Cambiamos a flex para centrar mejor el botón verde */
   justify-content: center;
   align-items: center;
-  padding: 10px 0 30px; /* Espacio generoso abajo */
+  padding: 10px 0 40px; /* Espacio generoso abajo */
   background: #000000;
   margin: 0; /* Eliminamos márgenes que causan el solapamiento */
 }
@@ -678,8 +678,11 @@ body.android .key small {
 body.android .call-button {
   width: 66px;
   height: 66px;
-  justify-self: center;
+  margin: 0;               /* Eliminamos cualquier margen que desplace el botón */
   background: #19844a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 body.android .delete-button span,
