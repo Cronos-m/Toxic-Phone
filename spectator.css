@@ -614,14 +614,14 @@ body.android .keypad {
 body.android .actions {
   width: 100%;
   max-width: none;
-  display: flex; /* Cambiamos a flex para centrar mejor el botón verde */
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0 40px; /* Espacio generoso abajo */
-  background: #000000;
-  margin: 0; /* Eliminamos márgenes que causan el solapamiento */
+  display: flex;           /* Usamos flex para control total de alineación */
+  justify-content: center; /* Centrado horizontal perfecto */
+  align-items: center;     /* Centrado vertical */
+  padding: 10px 0 40px;    /* Espacio inferior para evitar el borde de la pantalla */
+  background: #111111;
+  margin: 0;
+  border: none;
 }
-
 
 body.android .key {
   width: 82px;
