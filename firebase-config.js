@@ -1,19 +1,19 @@
 /*
-  Firebase initialization snippet
-
-  1. Create a Firebase project.
-  2. Enable Firestore Database.
-  3. Replace the placeholder values below with your web app config.
-  4. The dialer and admin page both sync with: devices/primary
+  Firebase Configuration - Teléfono (Dialer PWA)
+  Ubicación: carpetas del teléfono / firebase-config.js
+  
+  Este archivo utiliza la sintaxis clásica del SDK de Firebase (v8)
+  requerida por la lógica global del marcador del espectador.
 */
 
 window.SYSTEM_DIALER_FIREBASE_CONFIG = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDLMjo_w85BbROcvEwuVL9aeibPkPn_4yQ",
+  authDomain: "imeidata-6a37b.firebaseapp.com",
+  projectId: "imeidata-6a37b",
+  storageBucket: "imeidata-6a37b.firebasestorage.app",
+  messagingSenderId: "156564501276",
+  appId: "1:156564501276:web:a276cdebf01ae06d4580d9",
+  measurementId: "G-0RJ4KTGV1W"
 };
 
 window.SYSTEM_DIALER_DOCUMENT = {
@@ -23,18 +23,14 @@ window.SYSTEM_DIALER_DOCUMENT = {
 
 window.systemDialerFirebase = (() => {
   const config = window.SYSTEM_DIALER_FIREBASE_CONFIG;
-  const missingConfig =
-    !config ||
-    !config.apiKey ||
-    config.apiKey.includes("YOUR_") ||
-    config.projectId.includes("YOUR_");
+  const missingConfig = !config || !config.apiKey || config.apiKey.includes("YOUR_");
 
   if (missingConfig || !window.firebase) {
-    return {
-      enabled: false,
+    return { 
+      enabled: false, 
       reason: missingConfig ? "Firebase config is not set." : "Firebase SDK did not load.",
-      docRef: null,
-      db: null
+      docRef: null, 
+      db: null 
     };
   }
 
