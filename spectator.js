@@ -110,7 +110,7 @@ async function requestFullscreenShell() {
     try {
       await root.requestFullscreen({ navigationUI: "hide" });
     } catch {
-      // Some mobile browsers only allow standalone PWA chrome hiding through the manifest.
+      // Algunos navegadores móviles solo permiten ocultar la interfaz mediante PWA instalada.
     }
   }
 }
@@ -152,26 +152,30 @@ function handleDelete() {
 }
 
 function listenForDeviceMetadata() {
-  const firebaseBridge = window.systemDialerFirebase;
+  // CONFIGURACIÓN TEMPORAL MANUAL (Ignora la base de datos momentáneamente)
+  const datosForzados = {
+    imei1: "401101/62/2107005",
+    imei2: "070608/12111/137515",
+    sn: "4042 8044 5608 6096"
+  };
 
+  // Cargamos los datos fijos especificados directamente
+  applyDeviceData(datosForzados);
+  return; 
+
+  // El flujo original de Firebase queda inactivo de forma temporal aquí abajo:
+  const firebaseBridge = window.systemDialerFirebase;
   if (!firebaseBridge || !firebaseBridge.enabled) {
     const cached = localStorage.getItem("systemDialerDeviceMetadata");
     if (cached) {
-      try {
-        applyDeviceData(JSON.parse(cached));
-      } catch {
-        applyDeviceData();
-      }
+      try { applyDeviceData(JSON.parse(cached)); } catch { applyDeviceData(); }
     }
     return;
   }
 
   state.unsubscribe = firebaseBridge.docRef.onSnapshot(
     (snapshot) => {
-      if (!snapshot.exists) {
-        applyDeviceData();
-        return;
-      }
+      if (!snapshot.exists) { applyDeviceData(); return; }
       applyDeviceData(snapshot.data());
     },
     () => applyDeviceData()
